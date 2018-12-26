@@ -156,7 +156,7 @@ def initiateBot(token_read=False):
         await ctx.send(f"{ctx.author.mention} your user id is: {ctx.author.id}")
     
     @bot.command()
-    async def addAdmin(ctx, userId: int=None):
+    async def addAdmin(ctx, userId: str=None):
         currentId = (f"{ctx.author.id}")
 
         if currentId in admin_list:
@@ -167,6 +167,12 @@ def initiateBot(token_read=False):
                 admin_list.append(userId)
         else:
             await ctx.send("You dont have perms to do that!")
+    
+    @bot.command()
+    async def adminList(ctx):
+        await ctx.send("Current admin list:")
+        for idName in admin_list:
+            await ctx.send(f"{idName}")
 
     if __name__ == '__main__':
         print("\n=====LOADING EXT=====")
@@ -177,7 +183,7 @@ def initiateBot(token_read=False):
         for extension in main_extensions:
             try:
                 bot.load_extension(extension)
-                print("Loaded {} successfully!\n".format(extension))
+                print("Loaded {} successfully!".format(extension))
             except Exception as e:
                 print("\nFATAL ERROR:\nFailed to load extension: {}".format(extension))
                 print("Error Message: {}\n".format(e))
