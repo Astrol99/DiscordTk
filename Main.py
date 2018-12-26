@@ -169,6 +169,26 @@ def initiateBot(token_read=False):
                 file.close()
         else:
             await ctx.send("You dont have perms to do that!")
+
+    @bot.command()
+    async def removeAdmin(ctx, userId: str=None):
+        currentId = (f"{ctx.author.id}")
+
+        if currentId in admin_list:
+            if userId == None or len(userId) != 18:
+                await ctx.send("Invalid user id!")
+            else:
+                await ctx.send(f"Removed {userId} from admin list!")
+                file = open("adminList.txt", "r")
+                lines = file.readlines()
+                file.close()
+                file = open("adminList.txt", "w")
+                for line in lines:
+                    if line != f"{userId}"+"\n":
+                        file.write(line)
+                file.close
+        else:
+            await ctx.send("You dont have perms to do that!")
     
     @bot.command()
     async def adminList(ctx):
