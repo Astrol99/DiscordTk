@@ -90,9 +90,9 @@ def initiateBot(token_read=False):
         "cogs.Main_Functions"
     ]
 
-    admin_list = [
-        "354693078495264778"
-    ]
+    with open("adminList.txt") as fi:
+        admin_list = fi.read().splitlines()
+        fi.close()
 
 
     bot = commands.Bot(command_prefix=prefix, status=discord.Status.idle, activity=discord.Game(name="Booting..."))
@@ -164,15 +164,18 @@ def initiateBot(token_read=False):
                 await ctx.send("Invalid user id!")
             else:
                 await ctx.send(f"Added {userId} to admin list!")
-                admin_list.append(userId)
+                file = open("adminList.txt", "a+")
+                file.write(f"{userId}\n")
+                file.close()
         else:
             await ctx.send("You dont have perms to do that!")
     
     @bot.command()
     async def adminList(ctx):
         await ctx.send("Current admin list:")
-        for idName in admin_list:
-            await ctx.send(f"{idName}")
+        file = open("adminList.txt", "r")
+        for line in file:
+            await ctx.send(f"{line}")
 
     if __name__ == '__main__':
         print("\n=====LOADING EXT=====")
