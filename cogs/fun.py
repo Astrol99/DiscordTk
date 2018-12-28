@@ -30,7 +30,15 @@ class Fun:
         else:
             response = "Nope"
 
-        await ctx.send(f"{ctx.author.mention} rolled {num}\nAnswer: {response}")
+        text = f"{ctx.author.mention} rolled {num}\nAnswer: {response}"
+        
+        embed = discord.Embed(
+            title = "Roll Game",
+            description = text,
+            color = discord.Colour.blue()
+        )
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/527665456727982082/528286468314103815/dice-png-transparent-images--png-all-4.png")
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Fun(bot))
