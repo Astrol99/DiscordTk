@@ -85,9 +85,9 @@ def initiateBot(token_read=False):
 
     main_extensions = [
         #"controller",
-        "cogs.test",
         "cogs.Main_Functions",
-        "cogs.fun"
+        "cogs.fun",
+        "cogs.mod"
     ]
 
     with open("adminList.txt") as fi:
