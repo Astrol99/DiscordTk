@@ -27,8 +27,8 @@ class main_functions:
 
 #        await self.ban(user)
     @commands.command()
-    async def repeat(self, ctx, *, message: str):
-        await self.send(message)
+    async def repeat(self, ctx, message: str=None):
+        await ctx.send(message)
 
 def setup(bot):
     bot.add_cog(main_functions(bot))

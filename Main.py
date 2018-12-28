@@ -30,7 +30,6 @@ buttonStyle.configure("BW.TButton", foreground="Green", background="grey")
 
 welcomeLabel = Label(root, text="Discord Bot Generator", font=("helvetica", 20))
 stepLabel = Label(root, text="Please enter your bot token and command prefix", font=("helvetica", 8))
-helpLabel = Label(root, text="Welcome to Discord Bot Generator! We will first have to setup some things. See the following instructions to use this program.")
 
 welcomeLabel.pack(side=TOP)
 stepLabel.pack(side=TOP)
@@ -87,7 +86,8 @@ def initiateBot(token_read=False):
     main_extensions = [
         #"controller",
         "cogs.test",
-        "cogs.Main_Functions"
+        "cogs.Main_Functions",
+        "cogs.fun"
     ]
 
     with open("adminList.txt") as fi:
@@ -116,7 +116,7 @@ def initiateBot(token_read=False):
             await ctx.channel.send("Going offline...")
             time.sleep(3)
             await ctx.channel.send("Goodbye...")
-            sys.exit(f"User: {ctx.author.name}UserID: {ctx.author.id} executed the command 'shutdown' ")
+            sys.exit(f"User: {ctx.author.name} UserID: {ctx.author.id} executed the command 'shutdown' ")
 
         elif currentID not in admin_list:
             await ctx.channel.send("Unauthorized user!")
@@ -150,6 +150,15 @@ def initiateBot(token_read=False):
             await ctx.channel.send("Unloaded {}".format(extension_name))
         except Exception as e:
             await ctx.channel.send("Couldn't unload {}\n```py\n{}\n```".format(extension_name, e))
+
+    @bot.command()
+    async def reload(ctx, extension_name: str):
+        try:
+            bot.unload_extension(extension_name)
+            bot.load_extension(extension_name)
+            await ctx.send(f"Reloaded extension: {extension_name}")
+        except Exception as e:
+            await ctx.send(f"Couldn't reload {extension_name}\n```py\n{e}\n```")
 
     @bot.command()
     async def idMe(ctx):
