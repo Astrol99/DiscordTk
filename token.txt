@@ -1,2 +1,2 @@
 <Put Your Discord Token Here>
-!
+<Command Prefix Here>
