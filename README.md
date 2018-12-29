@@ -21,7 +21,7 @@ In token.txt, on the first line, replace <Put Your Discord Token Here> with your
 N18KJDSF89QKJSH.I2GKDSGF8723K9
 !
 ```
-***NOTE: Not actual token***
+######NOTE: Not actual token######
 
 ### Load token.txt purpose ###
 This option lets you pre-load a bot without entering the token and prefix in every time you turn on your bot.
