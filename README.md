@@ -13,7 +13,7 @@
 3. open command-line in that directory.
 4. type your token in token entry and command prefix in command_prefix or put them in token.txt with instrutions below. 
 
-**## Load token.txt setup ##**
+## Load token.txt setup ##
 In token.txt, on the first line, replace <Put Your Discord Token Here> with your discord bot token and second line, replace <Command Prefix Here> with the command prefix with your command prefix.
 
 ##### Example #####
