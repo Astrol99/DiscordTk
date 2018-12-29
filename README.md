@@ -11,7 +11,7 @@
 1. git clone https://github.com/Astrol99/DiscordTk.git in command-line or download zip.
 2. go into the directory where you installed DiscordTk. 
 3. open command-line in that directory.
-4. type your token in token entry and command prefix in command_prefix or put them in token.txt with instrutions below. 
+4. type your token in token entry and command prefix in command_prefix or put them in token.txt with instructions below. 
 
 ## Load token.txt setup ##
 In token.txt, on the first line, replace <Put Your Discord Token Here> with your discord bot token and second line, replace <Command Prefix Here> with the command prefix with your command prefix.
@@ -31,10 +31,6 @@ To add yourself to adminlist.txt, find your discord user ID.
 If your bot is already online, do "<command_prefix>idMe" to see your user id or right-click on your discord profile and click on "copy ID".
 After that, in adminList.txt, you can already see some user ID's, which is mine and my friends. You may delete them if you wish.
 Finally, copy + paste that user ID to addAdmin.txt and you are all set!
-
-
-### Built-In Function ###
-1. First, run your bot 
 
 ## TODO ##
 - - - -
