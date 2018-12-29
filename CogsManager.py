@@ -1,28 +1,41 @@
-from tkinter import *
+import tkinter as tk
 from tkinter import ttk
-import discord
-from discord.ext import commands
-import sys
-import os
 
-# Initalize Window =============================================================
+class mainApp(tk.Tk):
 
-root = Tk()
-root.title("Cogs Manager")
-root.geometry("400x600")
+    def __init__(self, *args, **kwargs):
+        tk.Tk.__init__(self, *args, **kwargs)
+        # Button Style
+        style = ttk.Style()
+        style.configure("BW.TLabel", font=('tahoma','24', 'bold'), background="white")
+        # Main Label
+        self.welcomeText = ttk.Label(self, text="Cogs Manager", style="BW.TLabel")
+        self.welcomeText.pack()
+        # Make Command Label
+        self.commandLabel = tk.Label(self, text="Command Maker", font=('tahoma', '14'))
+        self.commandLabel.place(x=145,y=50)
+        # Command Cog Name
+        self.command_name_ = tk.StringVar()
+        self.command_name = tk.Entry(self, textvariable=self.command_name_)
+        self.command_name.place(x=100, y=80)
+        # Button to initate new command
+        self.makeCommand = tk.Button(text="Submit", font=('tohoma', '10'), command=self.openTextBox)
+        self.makeCommand.place(x=165,y=110)
 
-# Tkinter styles ===============================================================
+    def openTextBox(self, *args, **kwargs):
+        # Get string of command name
+        self.fileName = None
+        self.fileName = str(f"{self.command_name_.get()}.py")
+        # Clear entry
+        self.command_name.delete(0, 'end')
+        # Unpack button and entry
+        self.command_name.destroy()
+        self.makeCommand.destroy()
+        # Make new label of name of new cog
+        self.cogLabel = tk.Label(self, text=f"Current Cog Name: {self.fileName}", font=('tohoma', '10'))
+        self.cogLabel.place(x=10, y=70)
 
-h1Style = ttk.Style()
-h1Style.configure("BW.TLabel", font=("helvetica", 20))
-
-buttonStyle = ttk.Style()
-buttonStyle.configure("BW.Button", foreground="black", background="grey")
-
-# Main Window ==================================================================
-
-h1Label = ttk.Label(root, text="Cogs Manager", style="BW.TLabel")
-
-h1Label.pack()
-
-root.mainloop()
+app = mainApp()
+app.title("Cogs Manager")
+app.geometry("400x600")
+app.mainloop()
