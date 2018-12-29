@@ -1,10 +1,13 @@
-**# DiscordTk #**
+# DiscordTk #
+- - - - 
 
-**## Requirements ##**
+## Requirements ##
+- - - -
 * Python 3.6.6 or higher
 * Discord 1.0.0a rewrite
 
-**## Installation ##**
+## Installation ##
+- - - -
 1. git clone https://github.com/Astrol99/DiscordTk.git in command-line or download zip.
 2. go into the directory where you installed DiscordTk. 
 3. open command-line in that directory.
@@ -20,8 +23,9 @@ N18KJDSF89QKJSH.I2GKDSGF8723K9
 ```
 ***NOTE: Not actual token***
 
-### Load token.txt purpose ##
+### Load token.txt purpose ###
 This option lets you pre-load a bot without entering the token and prefix in every time you turn on your bot.
 
-**## TODO ##**
+## TODO ##
+- - - -
 * Add cogs customization to add more commands
