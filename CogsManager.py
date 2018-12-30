@@ -5,9 +5,12 @@ class mainApp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
-        # Button Style
+        # Labek Style
         style = ttk.Style()
         style.configure("BW.TLabel", font=('tahoma','24', 'bold'), background="white")
+        # Button Style
+        style2 = ttk.Style()
+        style2.configure("BW.TButton", foreground="Light Green", background="grey", font=('tohoma', '14', 'bold'))
         # Main Label
         self.welcomeText = tk.Label(self, text="Cogs Manager", font=('tahoma','24', 'bold'))
         self.welcomeText.pack()
@@ -26,8 +29,8 @@ class mainApp(tk.Tk):
         #style2 = ttk.Style()
         #style2.configure("BA.TLabel", font=('tohoma', '14'), background="Grey", foreground="Light Green")
         # Button to initate new command
-        self.makeCommand = tk.Button(text="Submit", command=self.openTextBox, font="tohoma 14", fg="light green")
-        self.makeCommand.place(x=275,y=320)
+        self.makeCommand = ttk.Button(text="Submit", command=self.openTextBox, style="BW.TButton")
+        self.makeCommand.place(x=245,y=320)
     
     def error_window(self, textError="Unknown"):
         rootMIN = tk.Tk()
@@ -92,8 +95,8 @@ def setup(bot):
     bot.add_cog({Cog Name}(bot))
         ''')
         # Make save button
-        self.cogSave = tk.Button(self, text="Save", command=self.saveCog)
-        self.cogSave.place(x=540,y=50)
+        self.cogSave = ttk.Button(self, text="Save", command=self.saveCog, style="BW.TButton")
+        self.cogSave.place(x=500,y=50)
 
     # Pop-up window when finished with everything
     def doneWindow(self):
