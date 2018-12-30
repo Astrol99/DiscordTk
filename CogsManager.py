@@ -28,14 +28,33 @@ class mainApp(tk.Tk):
         # Button to initate new command
         self.makeCommand = ttk.Button(text="Submit", style="BA.TLabel",command=self.openTextBox)
         self.makeCommand.place(x=275,y=320)
+    
+    def error_window(self, textError="Unknown"):
+        rootMIN = tk.Tk()
+        rootMIN.title("ERROR")
+        rootMIN.geometry("400x200")
+        errorLabel = tk.Label(rootMIN, text=f"ERROR: {textError}")
+        errorLabel.place(relx=.5, rely=.5, anchor="center")
+        def closeWin():
+            rootMIN.destroy()
+        okButtonMIN = tk.Button(rootMIN, text="Ok",command=closeWin)
+        okButtonMIN.place(x=180,y=170)
+        rootMIN.mainloop()
 
     def openTextBox(self, *args, **kwargs):
         # Get string of command name
         self.fileName = None
-        self.fileName = str(f"{self.command_name_.get()}.py")
-        # Clear entry
+        self.fileName = str(f"{self.command_name_.get()}.py".replace(" ", ""))
+        # Gets list of cogs
+        with open("cog_list.txt") as se:
+            cog_list = se.read().splitlines()
+            se.close()
+        # Checks if cog name is empty
+        if len(self.command_name.get()) == 0 or self.command_name.index("end") == 0 or "" in self.fileName or self.fileName in cog_list:
+            self.error_window(textError="Cog already exists or name is empty!")
+            return
+        # Finally destroy all main widgets
         self.command_name.delete(0, 'end')
-        # Unpack button and entry
         self.command_name.destroy()
         self.makeCommand.destroy()
         self.cogLabel.destroy()
