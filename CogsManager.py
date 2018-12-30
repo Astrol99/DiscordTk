@@ -23,10 +23,10 @@ class mainApp(tk.Tk):
         self.command_name = tk.Entry(self, textvariable=self.command_name_)
         self.command_name.place(relx=.5, rely=.5, anchor="center")
         # Button Style for makeCommand
-        style2 = ttk.Style()
-        style2.configure("BA.TLabel", font=('tohoma', '14'), background="Grey", foreground="Light Green")
+        #style2 = ttk.Style()
+        #style2.configure("BA.TLabel", font=('tohoma', '14'), background="Grey", foreground="Light Green")
         # Button to initate new command
-        self.makeCommand = ttk.Button(text="Submit", style="BA.TLabel",command=self.openTextBox)
+        self.makeCommand = tk.Button(text="Submit", command=self.openTextBox, font="tohoma 14", fg="light green")
         self.makeCommand.place(x=275,y=320)
     
     def error_window(self, textError="Unknown"):
@@ -50,7 +50,7 @@ class mainApp(tk.Tk):
             cog_list = se.read().splitlines()
             se.close()
         # Checks if cog name is empty
-        if len(self.command_name.get()) == 0 or self.command_name.index("end") == 0 or "" in self.fileName or self.fileName in cog_list:
+        if len(self.command_name.get()) == 0 or self.command_name.index("end") == 0 or self.fileName in cog_list or " " in self.fileName:
             self.error_window(textError="Cog already exists or name is empty!")
             return
         # Finally destroy all main widgets
@@ -87,6 +87,64 @@ class {Cog Name}}:
 def setup(bot):
     bot.add_cog({Cog Name}(bot))
         ''')
+        # Make save button
+        self.cogSave = tk.Button(self, text="Save", command=self.saveCog)
+        self.cogSave.place(x=540,y=50)
+
+    # Pop-up window when finished with everything
+    def doneWindow(self):
+        doneRoot = tk.Tk()
+        # Frame Setup
+        doneRoot.title("Finished")
+        doneRoot.geometry("600x200")
+
+        # Main Labels
+        finishH1 = tk.Label(doneRoot, text="FINISHED", font="Tohoma 18 bold")
+        finishH1.pack()
+        finishedLabel = tk.Label(doneRoot, text="Finished applying new cog!")
+        finishedLabel.pack()
+        cogDir = tk.Label(doneRoot, text=f"Cogs dir is saved at: {self.currentFilePath}/cogs")
+        cogDir.pack()
+        extDir = tk.Label(doneRoot, text=f"{self.fileName} is saved at: {self.currentFilePath}/cogs/{self.fileName}")
+        extDir.pack()
+
+        # Destroy all
+        def destroyAll():
+            doneRoot.destroy()
+            app.destroy()
+
+        # Finish Button
+        finishBut = tk.Button(doneRoot, text="Finish", command=destroyAll)
+        finishBut.pack()
+
+        doneRoot.mainloop()
+
+    # Command to save cog
+    def saveCog(self):
+        # Import OS here since this is the only place required
+        import os
+        # Get all of text in text box
+        pure_input = self.textBox.get("1.0", tk.END)
+        # Current absolute dir
+        self.currentFilePath = os.path.dirname(os.path.abspath("CogsManager.py"))
+        # Bool if path exists
+        checkDir = os.path.isdir(f"{self.currentFilePath}/cogs/")
+        # If it doesn't, make a dir called cogs
+        if checkDir == False:
+            # Using try if something is wrong based on OS
+            try:
+                os.makedirs(f"/{self.currentFilePath}/cogs/")
+            except Exception as e:
+                # Call error window
+                self.error_window(textError=f"Something went wrong when making cog dir!\n{e}")
+
+        # Make new cog file
+        cogFile = open(f"/{self.currentFilePath}/cogs/{self.fileName}", "w")
+        cogFile.write(pure_input)
+        cogFile.close()
+
+        # Closes textbox window
+        self.doneWindow()
 
 app = mainApp()
 app.title("Cogs Manager")
