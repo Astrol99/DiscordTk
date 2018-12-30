@@ -5,25 +5,27 @@ class mainApp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
+        # Background color of entire tk windows
+        self.configure(background="#36393f")
         # Labek Style
         style = ttk.Style()
-        style.configure("BW.TLabel", font=('tahoma','24', 'bold'), background="white")
+        style.configure("BW.TLabel", font=('tahoma','24', 'bold'), background="#36393f")
         # Button Style
         style2 = ttk.Style()
-        style2.configure("BW.TButton", foreground="Light Green", background="grey", font=('tohoma', '14', 'bold'))
+        style2.configure("BW.TButton", foreground="Light Green", background="#36393f", font=('tohoma', '14', 'bold'))
         # Main Label
-        self.welcomeText = tk.Label(self, text="Cogs Manager", font=('tahoma','24', 'bold'))
+        self.welcomeText = tk.Label(self, text="Cogs Manager", font=('tahoma','24', 'bold'), background="#36393f", foreground="white")
         self.welcomeText.pack()
         # Make Command Label
-        self.commandLabel = tk.Label(self, text="Command Maker", font=('tahoma', '14'))
+        self.commandLabel = tk.Label(self, text="Command Maker", font=('tahoma', '14'), background="#36393f", foreground="white")
         self.commandLabel.pack()
         # Cog Label
-        self.cogLabel = tk.Label(self, text="Cog Name:", font=('tahoma', '12'))
+        self.cogLabel = tk.Label(self, text="Cog Name:", font=('tahoma', '12'), background="#36393f", foreground="white")
         self.cogLabel.pack_propagate(0) 
         self.cogLabel.place(x=125,y=290)
         # Command Cog Name
         self.command_name_ = tk.StringVar()
-        self.command_name = tk.Entry(self, textvariable=self.command_name_)
+        self.command_name = tk.Entry(self, textvariable=self.command_name_, background="#36393f", foreground="white")
         self.command_name.place(relx=.5, rely=.5, anchor="center")
         # Button Style for makeCommand
         #style2 = ttk.Style()
@@ -62,7 +64,7 @@ class mainApp(tk.Tk):
         self.makeCommand.destroy()
         self.cogLabel.destroy()
         # Make new label of name of new cog
-        self.cogLabel = tk.Label(self, text=f"Current file Name: {self.fileName}", font=('tohoma', '10'))
+        self.cogLabel = tk.Label(self, text=f"Current file Name: {self.fileName}", font=('tohoma', '10'), foreground="white", background="#36393f")
         self.cogLabel.place(x=10, y=70)
         # Make text box to edit custom commands
         self.textBox = tk.Text(self, width=80,height=25)

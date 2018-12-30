@@ -21,15 +21,19 @@ root = Tk()
 root.geometry("400x200")
 root.title("Discord Bot Generator")
 
+# Style for all tk windows
+
+root.configure(background="#36393f")
+
 # Style ===============================================================
 
 buttonStyle = ttk.Style()
-buttonStyle.configure("BW.TButton", foreground="Green", background="grey")
+buttonStyle.configure("BW.TButton", foreground="Light Green", background="#36393f")
 
 # Initalizing widgets =========================================================================================
 
-welcomeLabel = Label(root, text="Discord Bot Generator", font=("helvetica", 20))
-stepLabel = Label(root, text="Please enter your bot token and command prefix", font=("helvetica", 8))
+welcomeLabel = Label(root, text="Discord Bot Generator", font=("helvetica", 20), background="#36393f", foreground="white")
+stepLabel = Label(root, text="Please enter your bot token and command prefix", font=("helvetica", 8), background="#36393f", foreground="white")
 
 welcomeLabel.pack(side=TOP)
 stepLabel.pack(side=TOP)
@@ -37,8 +41,8 @@ stepLabel.pack(side=TOP)
 token_ = StringVar()
 prefix_ = StringVar()
 
-tokenEntry = Entry(root, textvariable=token_)
-prefixEntry = Entry(root, textvariable=prefix_)
+tokenEntry = Entry(root, textvariable=token_, background="#36393f", foreground="white")
+prefixEntry = Entry(root, textvariable=prefix_, background="#36393f", foreground="white")
 
 labelWarn = Label(root, text="Exiting...", fg="red", font=("helvetica", 9))
 
@@ -227,16 +231,16 @@ def initiateBot(token_read=False):
 startButton = ttk.Button(root, text="Enter", style="BW.TButton", command=initiateBot)
 startToken = ttk.Button(root, text="Load Token.txt", style="BW.TButton", command=lambda: initiateBot(token_read=True))
 
-tokenLabel = Label(root, text="Token: ")
-prefixLabel = Label(root, text="Prefix: ")
+tokenLabel = Label(root, text="Token: ", background="#36393f", foreground="white")
+prefixLabel = Label(root, text="Prefix: ", background="#36393f", foreground="white")
 
 tokenLabel.place(x=0,y=100)
-tokenEntry.place(x=50,y=100)
+tokenEntry.place(x=53,y=100)
 
 prefixLabel.place(x=0, y=125)
-prefixEntry.place(x=50, y=125)
+prefixEntry.place(x=53, y=130)
 
-startButton.place(x=315, y=112.5)
-startToken.place(x=308.5, y=140)
+startButton.place(x=305, y=100)
+startToken.place(x=270, y=130)
 
 root.mainloop()
