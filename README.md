@@ -5,6 +5,7 @@
 - - - -
 * Python 3.6.6 or higher
 * Discord 1.0.0a rewrite
+* Platform 
 
 ## Installation ##
 - - - -
