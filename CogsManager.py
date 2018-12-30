@@ -72,6 +72,7 @@ from discord.ext import commands
 # IMPORTANT: Make sure to make CLASS NAME different from FILE NAME
 
 # Replace {Cog Name} with your command name
+
 class {Cog Name}}:
     def __init__(self, bot):
         self.bot = bot
@@ -79,11 +80,14 @@ class {Cog Name}}:
     # EXAMPLE: command_prefix for now is !
     # Input: "!hello" 
     # Output: "Hello, @User#1337"
-    #@commands.command()
-    #async def hello(self, ctx):
-    #    await ctx.send(f"Hello, {ctx.author.mention}!")
+
+    # Starter command, from ^
+    @commands.command()
+    async def hello(self, ctx):
+        await ctx.send(f"Hello, {ctx.author.mention}!")
     
 # Replace {Cog Name} with the same EXACT name next to class
+
 def setup(bot):
     bot.add_cog({Cog Name}(bot))
         ''')

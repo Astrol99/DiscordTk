@@ -32,6 +32,19 @@ If your bot is already online, do "<command_prefix>idMe" to see your user id or 
 After that, in adminList.txt, you can already see some user ID's, which is mine and my friends. You may delete them if you wish.
 Finally, copy + paste that user ID to addAdmin.txt and you are all set!
 
-## TODO ##
+## Cogs Manager ##
 - - - -
-* Add cogs customization to add more commands
+The CogsManager.py is an GUI that helps users add discord cogs without going through Main.py to add it and update it to local list of cogs with ease.
+### IMPORTANT ###
+Make sure to name your cog without adding .py extension to end of it.
+#### Example: ####
+Wrong Way:
+```
+fun.py
+```
+Right Way:
+```
+fun
+```
+### IMPORTANT PT.2 ###
+When editing your cog in the text box, make sure to make your classname different from the filename as it would create attribute problems.
