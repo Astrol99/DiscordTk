@@ -123,23 +123,38 @@ def setup(bot):
     def saveCog(self):
         # Import OS here since this is the only place required
         import os
+        # Used to detect OS
+        import platform
         # Get all of text in text box
         pure_input = self.textBox.get("1.0", tk.END)
         # Current absolute dir
         self.currentFilePath = os.path.dirname(os.path.abspath("CogsManager.py"))
+        # Checks if is windows or not
+        if platform.system() == "Windows":
+            start = "C:/"
+        else:
+            start = ""
         # Bool if path exists
-        checkDir = os.path.isdir(f"{self.currentFilePath}/cogs/")
+        try:
+            checkDir = os.path.isdir(f"{start}{self.currentFilePath}/cogs/")
+        except:
+            try:
+                start = "D:/"
+                checkDir = os.path.isdir(f"{start}{self.currentFilePath}/cogs/")
+            except Exception as e:
+                self.error_window(textError=f"Something went wrong when checking cogs dir!\n{e}")
+                return
         # If it doesn't, make a dir called cogs
         if checkDir == False:
             # Using try if something is wrong based on OS
             try:
-                os.makedirs(f"/{self.currentFilePath}/cogs/")
+                os.makedirs(f"{start}{self.currentFilePath}/cogs/")
             except Exception as e:
                 # Call error window
                 self.error_window(textError=f"Something went wrong when making cog dir!\n{e}")
 
         # Make new cog file
-        cogFile = open(f"/{self.currentFilePath}/cogs/{self.fileName}", "w")
+        cogFile = open(f"{start}{self.currentFilePath}/cogs/{self.fileName}", "w")
         cogFile.write(pure_input)
         cogFile.close()
 
