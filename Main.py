@@ -21,6 +21,9 @@ root = Tk()
 root.geometry("400x200")
 root.title("Discord Bot Generator")
 
+# Make tk window not resizable
+root.resizable(False, False)
+
 # Style for all tk windows
 
 root.configure(background="#36393f")

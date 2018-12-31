@@ -5,6 +5,8 @@ class mainApp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
+        # Make Tk window not resizable (can cause widget placement look weird)
+        self.resizable(False, False)
         # Background color of entire tk windows
         self.configure(background="#36393f")
         # Labek Style
@@ -25,8 +27,11 @@ class mainApp(tk.Tk):
         self.cogLabel.place(x=125,y=290)
         # Command Cog Name
         self.command_name_ = tk.StringVar()
-        self.command_name = tk.Entry(self, textvariable=self.command_name_, background="#36393f", foreground="white")
+        self.command_name = tk.Entry(self, textvariable=self.command_name_)
         self.command_name.place(relx=.5, rely=.5, anchor="center")
+        # .py extension label
+        self.extension_name = tk.Label(self, text=".py", font=('tohoma', '12'), background="#36393f", foreground="#fec909")
+        self.extension_name.place(x=400, y=290)
         # Button Style for makeCommand
         #style2 = ttk.Style()
         #style2.configure("BA.TLabel", font=('tohoma', '14'), background="Grey", foreground="Light Green")
@@ -64,7 +69,7 @@ class mainApp(tk.Tk):
         self.makeCommand.destroy()
         self.cogLabel.destroy()
         # Make new label of name of new cog
-        self.cogLabel = tk.Label(self, text=f"Current file Name: {self.fileName}", font=('tohoma', '10'), foreground="white", background="#36393f")
+        self.cogLabel = tk.Label(self, text=f"Current file Name: {self.fileName}", font=('tohoma', '10'), background="#36393f", foreground="white")
         self.cogLabel.place(x=10, y=70)
         # Make text box to edit custom commands
         self.textBox = tk.Text(self, width=80,height=25)
